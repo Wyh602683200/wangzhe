@@ -5,7 +5,7 @@ from bridge.context import ContextType
 from bridge.reply import Reply, ReplyType
 from common.log import logger
 
-BASE_URL_DM = "https://api.linhun.vip/api/wzrw?&text&apiKey=399bd20ef34d1592dfcfc517b521ea2e" 
+BASE_URL_DM = "https://api.zxki.cn/api/wangzhe?"
 
 @plugins.register(name="wangzhe",
                   desc="获取王者英雄人物情况",
@@ -46,8 +46,12 @@ class wangzhe(Plugin):
 
     def wangzhe(self):
         url = BASE_URL_DM
-        params = {"name":self.content.replace("王者 ", "").replace("王者荣耀 ", "")}            
+        params = {"msg":self.content.replace("王者 ", "").replace("王者荣耀 ", "")}            
         headers = {'Content-Type': "application/x-www-form-urlencoded"}
+        
+        logger.info(f"url:{url}")
+        logger.info(f"params:{params}")
+        
         try:
             response = requests.get(url, params=params,headers=headers)
             if response.status_code == 200:
